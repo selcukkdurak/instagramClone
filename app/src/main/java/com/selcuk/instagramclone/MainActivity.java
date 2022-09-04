@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
         auth = FirebaseAuth.getInstance();
 
     }
