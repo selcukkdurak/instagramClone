@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
         auth = FirebaseAuth.getInstance();
 
     }
+
 
     public void signInClicked(View view) {
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         String email = binding.emailText.getText().toString();
         String password = binding.passwordText.getText().toString();
 
-        if (email.equals("") || password.equals("")) {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Enter email and password!", Toast.LENGTH_LONG).show();
         } else {
             auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, FeedActivity.class);
                     startActivity(intent);
                     finish();
+                     //Toast.makeText(getApplicationContext(), "Enter email and password!", Toast.LENGTH_LONG).show();
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
